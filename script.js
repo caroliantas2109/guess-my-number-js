@@ -18,11 +18,17 @@ document.querySelector('.check').addEventListener('click', function () {
   // No input
   if (!guess) {
     // document.querySelector(`.message`).textContent = `No number!`;
-    displayMessage('No number! ⛔'); //This is how to DRY the code, I'm learning so I'm just trying to make small changes
+    displayMessage('No number! ✖️👎'); //This is how to DRY the code, I'm learning so I'm just trying to make small changes
+    ``;
+    // Change background color when there is no input
+    document.querySelector('body').style.backgroundColor = '#ff4d4d';
 
     //Number is less than 1 OR number is greater than 20.
   } else if (guess < 1 || guess > 20) {
     displayMessage('Choose a number between 1 and 20 ⚠️');
+
+    // Change background color when number is invalid
+    document.querySelector('body').style.backgroundColor = '#ff4d4d';
 
     // Correct guess
   } else if (guess === secretNumber) {
@@ -39,9 +45,12 @@ document.querySelector('.check').addEventListener('click', function () {
     }
 
     // Wrong guess
-  } else if (guess !== secretNumber) {
+  } else {
     if (score > 1) {
       displayMessage(guess > secretNumber ? 'Too high 😅' : 'Too low 🥲');
+
+      // Reset background color while still playing
+      document.querySelector('body').style.backgroundColor = '#222';
 
       // This version works, but it repeats the same code multiple times.
       // To follow DRY (Don't Repeat Yourself), we should reduce repetition.
@@ -71,6 +80,9 @@ document.querySelector('.check').addEventListener('click', function () {
     } else {
       displayMessage('You lost the game 🥹, try again!');
       document.querySelector('.score').textContent = 0;
+
+      // Change background color when player loses
+      document.querySelector('body').style.backgroundColor = '#ff4d4d';
     }
   }
 });
